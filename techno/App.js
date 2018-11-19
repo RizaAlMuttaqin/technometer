@@ -18,7 +18,7 @@ export default createAppContainer(createBottomTabNavigator(
         let iconName;
         if (routeName === 'Home') {
           iconName = `ios-information-circle${focused ? '' : '-outline'}`;
-        } else if (routeName === 'Settings') {
+        } else if (routeName === 'Catalog') {
           iconName = `ios-options${focused ? '' : '-outline'}`;
         }
 
