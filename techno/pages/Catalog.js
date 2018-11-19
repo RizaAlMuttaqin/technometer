@@ -4,19 +4,65 @@ import {
     StyleSheet,
     Text,
     View,
-    Button
+    Button,
+    TouchableOpacity,
+    showAlert
 } from "react-native";
+import AwesomeAlert from 'react-native-awesome-alerts';
 
 class Catalog extends Component {
     static navigationOption ={
         header:null,
     }
+    constructor(props) {
+        super(props);
+        this.state = { showAlert: true };
+      };
+     
+      showAlert = () => {
+        this.setState({
+          showAlert: true
+        });
+      };
+     
+      hideAlert = () => {
+        this.setState({
+          showAlert: false
+        });
+      };
     render(){
         return(
-        <View style={styles.container}>
-        <Button title="Go To Home Screen"
-            onPress={()=> this.props.navigation.navigate('Home')}/>
-        </View>
+            <View style={styles.container}>
+ 
+            <Text>I'm AwesomeAlert</Text>
+            <TouchableOpacity onPress={() => {
+              this.showAlert();
+            }}>
+              <View style={styles.button}>
+                <Text style={styles.text}>Try me!</Text>
+              </View>
+            </TouchableOpacity>
+     
+            <AwesomeAlert
+              show={showAlert}
+              showProgress={false}
+              title="AwesomeAlert"
+              message="I have a message for you!"
+              closeOnTouchOutside={true}
+              closeOnHardwareBackPress={false}
+              showCancelButton={true}
+              showConfirmButton={true}
+              cancelText="No, cancel"
+              confirmText="Yes, delete it"
+              confirmButtonColor="#DD6B55"
+              onCancelPressed={() => {
+                this.hideAlert();
+              }}
+              onConfirmPressed={() => {
+                this.hideAlert();
+              }}
+            />
+          </View>
         );
     }
 }
@@ -45,4 +91,15 @@ const styles = StyleSheet.create({
       navItem: {
         marginLeft: 25
       },
+      button: {
+        margin: 10,
+        paddingHorizontal: 10,
+        paddingVertical: 7,
+        borderRadius: 5,
+        backgroundColor: "#AEDEF4",
+      },
+      text: {
+        color: '#fff',
+        fontSize: 15
+      }
 })
