@@ -5,8 +5,7 @@ import {
     Text,
     View,
     Button,
-    TouchableOpacity,
-    showAlert
+    TouchableOpacity
 } from "react-native";
 import AwesomeAlert from 'react-native-awesome-alerts';
 
@@ -16,7 +15,7 @@ class Catalog extends Component {
     }
     constructor(props) {
         super(props);
-        this.state = { showAlert: true };
+        this.state = { showAlert: false };
       };
      
       showAlert = () => {
@@ -31,6 +30,7 @@ class Catalog extends Component {
         });
       };
     render(){
+      const {showAlert} = this.state;
         return(
             <View style={styles.container}>
  
