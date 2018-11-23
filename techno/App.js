@@ -1,7 +1,66 @@
 import React from 'react';
-import { Button, Text, View, Image } from 'react-native';
+import { Button, Text, View, Image, ScrollView, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { createStackNavigator, createBottomTabNavigator, createAppContainer } from 'react-navigation';
+import { Card, CardTitle, CardContent, CardAction, CardButton, CardImage } from 'react-native-cards';
+import AwesomeAlert from 'react-native-awesome-alerts';
+
+class Kartu extends React.Component {
+  render() {
+    return (
+      <ScrollView>
+        <Card title="Ikan itu Iwak">
+          <CardImage
+            source={require('./images/ikan-bandeng.jpg')}
+            title="Top 10 South African beaches"
+          />
+          <CardTitle
+            subtitle="Number 6"
+          />
+          <CardContent text="Clifton, Western Cape" />
+          <CardAction
+            separator={true}
+            inColumn={false}>
+            <CardButton
+              onPress={() => {alert('Ini Tombol', 'Ini juga') }}
+              title="Share"
+              color="#FEB557"
+            />
+            <CardButton
+              onPress={() => { }}
+              title="Explore"
+              color="#FEB557"
+            />
+          </CardAction>
+        </Card>
+        <Card title="Ikan itu Iwak">
+          <CardImage
+            source={require('./images/ikan-bandeng.jpg')}
+            title="Top 10 South African beaches"
+          />
+          <CardTitle
+            subtitle="Number 6"
+          />
+          <CardContent text="Clifton, Western Cape" />
+          <CardAction
+            separator={true}
+            inColumn={false}>
+            <CardButton
+              onPress={() => { }}
+              title="Share"
+              color="#FEB557"
+            />
+            <CardButton
+              onPress={() => { }}
+              title="Explore"
+              color="#FEB557"
+            />
+          </CardAction>
+        </Card>
+      </ScrollView>
+    )
+  }
+}
 
 class LogoTitle extends React.Component {
   render() {
@@ -21,7 +80,7 @@ class HomeScreen extends React.Component {
       <Button
         onPress={() => alert('This is a button!')}
         title="Info"
-        color="#fff"
+        color="lightseagreen"
       />
     ),
     headerStyle: {
@@ -34,9 +93,10 @@ class HomeScreen extends React.Component {
   };
   render() {
     return (
-      <View style={{ flex: 5, justifyContent: 'center', alignItems: 'center' }}>
+      <View style={styles.container}>
         <Text>Home!</Text>
-        <Button
+        <View style={styles.Tombol}>
+        <Button //style={{paddingVertical: 20,}}
           title="Go to Settings"
           onPress={() => this.props.navigation.navigate('Settings')}
         />
@@ -44,6 +104,8 @@ class HomeScreen extends React.Component {
           title="Go to Details"
           onPress={() => this.props.navigation.navigate('Details')}
         />
+        </View>
+        
       </View>
     );
   }
@@ -100,17 +162,20 @@ class DetailsScreen extends React.Component {
 const HomeStack = createStackNavigator({
   Home: { screen: HomeScreen },
   Details: { screen: DetailsScreen },
+  Kartu: { screen: Kartu },
 });
 
 const SettingsStack = createStackNavigator({
   Settings: { screen: SettingsScreen },
   Details: { screen: DetailsScreen },
+  Kartu: { screen: Kartu },
 });
 
 export default createAppContainer(createBottomTabNavigator(
   {
     Home: { screen: HomeStack },
     Settings: { screen: SettingsStack },
+    Kartu: { screen: Kartu },
   },
   {
     defaultNavigationOptions: ({ navigation }) => ({
@@ -121,6 +186,8 @@ export default createAppContainer(createBottomTabNavigator(
           iconName = `ios-home`;
         } else if (routeName === 'Settings') {
           iconName = `ios-options`;
+        } else if (routeName === 'Kartu') {
+          iconName = 'ios-options';
         }
 
         // You can return any component that you like here! We usually use an
@@ -134,3 +201,18 @@ export default createAppContainer(createBottomTabNavigator(
     },
   }
 ));
+
+const styles = StyleSheet.create({
+  container:{
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
+},
+  Tombol: {
+    position: 'absolute',
+    bottom: 35,
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    paddingHorizontal: 20
+  }
+})
