@@ -4,6 +4,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { createStackNavigator, createBottomTabNavigator, createAppContainer } from 'react-navigation';
 import { Card, CardTitle, CardContent, CardAction, CardButton, CardImage } from 'react-native-cards';
 import AwesomeAlert from 'react-native-awesome-alerts';
+import { Icon, PricingCard } from 'react-native-elements'
 
 class Kartu extends React.Component {
   render() {
@@ -22,9 +23,9 @@ class Kartu extends React.Component {
             separator={true}
             inColumn={false}>
             <CardButton
-              onPress={() => {alert('Ini Tombol', 'Ini juga') }}
+              onPress={() => { alert('Ini Tombol', 'Ini juga') }}
               title="Share"
-              color="#FEB557"
+              color="black"
             />
             <CardButton
               onPress={() => { }}
@@ -95,17 +96,39 @@ class HomeScreen extends React.Component {
     return (
       <View style={styles.container}>
         <Text>Home!</Text>
-        <View style={styles.Tombol}>
-        <Button //style={{paddingVertical: 20,}}
+
+        {/*<Button //style={{paddingVertical: 20,}}
           title="Go to Settings"
           onPress={() => this.props.navigation.navigate('Settings')}
         />
+
         <Button
           title="Go to Details"
           onPress={() => this.props.navigation.navigate('Details')}
+        />*/}
+        <Icon
+          raised
+          name='heartbeat'
+          type='font-awesome'
+          color='#f50'
+          onPress={() => alert('hello')}
         />
-        </View>
-        
+        <PricingCard
+          color='#4f9deb'
+          title='pH'
+          price='0'
+          info={['Kadar pH', 'Basic Support', 'All Core Features']}
+          button={{ title: 'Ukur', icon: 'settings-remote' }}
+          onButtonPress={() => alert('hello')}
+        />
+        <PricingCard
+          color='#4f9deb'
+          title='Salinitas'
+          price='0'
+          info={['Kadar Salinitas', 'Basic Support', 'All Core Features']}
+          button={{ title: 'Ukur', icon: 'settings-remote' }}
+          onButtonPress={() => alert('hello')}
+        />
       </View>
     );
   }
@@ -203,16 +226,26 @@ export default createAppContainer(createBottomTabNavigator(
 ));
 
 const styles = StyleSheet.create({
-  container:{
+  container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
-},
-  Tombol: {
-    position: 'absolute',
-    bottom: 35,
     flexDirection: 'row',
+    justifyContent: 'space-around',
+    size: 50
+  },
+  /*Tombol1: {
+    flex: 1,
+    position: 'absolute',
+    bottom: 150,
+    flexDirection: 'column',
     justifyContent: 'space-evenly',
     paddingHorizontal: 20
-  }
+  },
+  Tombol2: {
+    flex:1,
+    position: 'absolute',
+    bottom: 100,
+    flexDirection: 'column',
+    justifyContent: 'space-evenly',
+    paddingHorizontal: 20
+  }*/
 })
